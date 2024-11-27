@@ -32,7 +32,7 @@ export default function MessagesView({
   const { conversationId } = conversation ?? {};
 
   return (
-    <div className="flex-1 overflow-hidden overflow-y-auto">
+    <div className="flex-1 overflow-hidden overflow-y-auto z-[1]">
       <div className="relative h-full">
         <div
           onScroll={debouncedHandleScroll}

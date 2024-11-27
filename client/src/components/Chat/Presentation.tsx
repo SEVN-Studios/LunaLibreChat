@@ -9,6 +9,7 @@ import { useDeleteFilesMutation } from '~/data-provider';
 import Artifacts from '~/components/Artifacts/Artifacts';
 import { SidePanel } from '~/components/SidePanel';
 import store from '~/store';
+import cn from '~/utils/cn';
 
 const defaultInterface = getConfigDefaults().interface;
 
@@ -16,10 +17,12 @@ export default function Presentation({
   children,
   useSidePanel = false,
   panel,
+  mainClass,
 }: {
   children: React.ReactNode;
   panel?: React.ReactNode;
   useSidePanel?: boolean;
+  mainClass?: string;
 }) {
   const { data: startupConfig } = useGetStartupConfig();
   const artifacts = useRecoilValue(store.artifactsState);
@@ -79,7 +82,7 @@ export default function Presentation({
   const fullCollapse = useMemo(() => localStorage.getItem('fullPanelCollapse') === 'true', []);
 
   const layout = () => (
-    <div className="transition-width relative flex h-full w-full flex-1 flex-col items-stretch overflow-hidden bg-white pt-0 dark:bg-gray-800">
+    <div className="transition-width relative flex h-full w-full flex-1 flex-col items-stretch overflow-hidden">
       <div className="flex h-full flex-col" role="presentation">
         {children}
         {isActive && <DragDropOverlay />}
@@ -91,7 +94,7 @@ export default function Presentation({
     return (
       <div
         ref={drop}
-        className="relative flex w-full grow overflow-hidden bg-white dark:bg-gray-800"
+        className="relative flex w-full grow overflow-hidden"
       >
         <SidePanel
           defaultLayout={defaultLayout}
@@ -105,7 +108,7 @@ export default function Presentation({
               ) : null
           }
         >
-          <main className="flex h-full flex-col" role="main">
+          <main className={cn('flex h-full flex-col', mainClass)} role="main">
             {children}
             {isActive && <DragDropOverlay />}
           </main>
@@ -115,7 +118,7 @@ export default function Presentation({
   }
 
   return (
-    <div ref={drop} className="relative flex w-full grow overflow-hidden bg-white dark:bg-gray-800">
+    <div ref={drop} className="relative flex w-full grow overflow-hidden">
       {layout()}
       {panel != null && panel}
     </div>

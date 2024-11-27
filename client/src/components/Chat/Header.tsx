@@ -34,11 +34,11 @@ export default function Header() {
   const isSmallScreen = useMediaQuery('(max-width: 768px)');
 
   return (
-    <div className="sticky top-0 z-10 flex h-14 w-full items-center justify-between bg-white p-2 font-semibold dark:bg-gray-800 dark:text-white">
+    <div className="sticky top-0 z-10 flex h-14 w-full items-center justify-between bg-surface-primary p-2 font-semibold dark:text-white">
       <div className="hide-scrollbar flex w-full items-center justify-between gap-2 overflow-x-auto">
         <div className="flex items-center gap-2">
           {!navVisible && <HeaderNewChat />}
-          {interfaceConfig.endpointsMenu === true && <EndpointsMenu />}
+          {/* {interfaceConfig.endpointsMenu === true && <EndpointsMenu />} */}
           {modelSpecs.length > 0 && <ModelSpecsMenu modelSpecs={modelSpecs} />}
           {<HeaderOptions interfaceConfig={interfaceConfig} />}
           {interfaceConfig.presets === true && <PresetsMenu />}

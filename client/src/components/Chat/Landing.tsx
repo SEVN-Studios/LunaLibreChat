@@ -7,7 +7,7 @@ import { useChatContext, useAgentsMapContext, useAssistantsMapContext } from '~/
 import { useGetAssistantDocsQuery } from '~/data-provider';
 import ConvoIcon from '~/components/Endpoints/ConvoIcon';
 import { getIconEndpoint, getEntity, cn } from '~/utils';
-import { useLocalize, useSubmitMessage } from '~/hooks';
+import { useAuthContext, useLocalize, useSubmitMessage } from '~/hooks';
 import { TooltipAnchor } from '~/components/ui';
 import { BirthdayIcon } from '~/components/svg';
 import ConvoStarter from './ConvoStarter';
@@ -18,6 +18,13 @@ export default function Landing({ Header }: { Header?: ReactNode }) {
   const assistantMap = useAssistantsMapContext();
   const { data: startupConfig } = useGetStartupConfig();
   const { data: endpointsConfig } = useGetEndpointsQuery();
+  const { user } = useAuthContext();
+  const suggestions = [
+    'Suggest a list of horror movies to watch for movie night',
+    'Show me a code snippet of a website\'s sticky header',
+    'Explain the plot of Bridge to Terabithia',
+    'How to be extroverted if I am an introvert',
+  ]
 
   const localize = useLocalize();
 
@@ -84,14 +91,20 @@ export default function Landing({ Header }: { Header?: ReactNode }) {
       return localize('com_nav_welcome_agent');
     }
 
-    return localize('com_nav_welcome_message');
+    const message = localize('com_nav_welcome_message');
+
+    return `${message.slice(0, -1)}, ${user?.name}?`;
   };
 
+  function onSuggestionSelect(suggestion: string) {
+    // TODO add suggestion selection
+  }
+
   return (
-    <div className="relative h-full">
+    <div className="relative h-full z-[1]">
       <div className="absolute left-0 right-0">{Header != null ? Header : null}</div>
       <div className="flex h-full flex-col items-center justify-center">
-        <div className={cn('relative h-12 w-12', name && avatar ? 'mb-0' : 'mb-3')}>
+        {/* <div className={cn('relative h-12 w-12', name && avatar ? 'mb-0' : 'mb-3')}>
           <ConvoIcon
             agentsMap={agentsMap}
             assistantMap={assistantMap}
@@ -110,7 +123,7 @@ export default function Landing({ Header }: { Header?: ReactNode }) {
               <BirthdayIcon />
             </TooltipAnchor>
           ) : null}
-        </div>
+        </div> */}
         {name ? (
           <div className="flex flex-col items-center gap-0 p-2">
             <div className="text-center text-2xl font-medium dark:text-white">{name}</div>
@@ -122,10 +135,23 @@ export default function Landing({ Header }: { Header?: ReactNode }) {
           </div> */}
           </div>
         ) : (
-          <h2 className="mb-5 max-w-[75vh] px-12 text-center text-lg font-medium dark:text-white md:px-0 md:text-2xl">
+          <h1 className="mb-7 max-w-[75vh] px-12 text-center text-lg md:text-[45px] md:leading-[52px] font-medium dark:text-white md:px-0">
             {getWelcomeMessage()}
-          </h2>
+          </h1>
         )}
+        <div className="grid grid-rows-2 grid-cols-2 gap-x-[34px] gap-y-[18px]">
+          {suggestions.map((suggestion, i) => (
+            <div
+              className="flex justify-center items-center w-full max-w-[280px] border border-[#585c6e] hover:border-[#777c96] rounded-full group px-10 py-2.5 mx-auto transition-colors duration-300 cursor-pointer"
+              onClick={() => onSuggestionSelect(suggestion)}
+              key={i}
+            >
+              <p className="text-[#333] dark:text-[#828282] group-hover:text-[#4f4f4f] dark:group-hover:text-[#f2f2f2] text-sm text-center transition-colors duration-300">
+                {suggestion}
+              </p>
+            </div>
+          ))}
+        </div>
         <div className="mt-8 flex flex-wrap justify-center gap-3 px-4">
           {conversation_starters.length > 0 &&
             conversation_starters

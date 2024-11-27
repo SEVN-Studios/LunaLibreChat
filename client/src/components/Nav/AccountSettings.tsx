@@ -3,7 +3,7 @@ import * as Select from '@ariakit/react/select';
 import { Fragment, useState, memo } from 'react';
 import { FileText, LogOut } from 'lucide-react';
 import { useGetUserBalance, useGetStartupConfig } from 'librechat-data-provider/react-query';
-import { LinkIcon, GearIcon, DropdownMenuSeparator } from '~/components';
+import { LinkIcon, GearIcon, SettingsIcon, DropdownMenuSeparator } from '~/components';
 import FilesView from '~/components/Chat/Input/Files/FilesView';
 import { useAuthContext } from '~/hooks/AuthContext';
 import useAvatar from '~/hooks/Messages/useAvatar';
@@ -27,48 +27,52 @@ function AccountSettings() {
 
   return (
     <Select.SelectProvider>
-      <Select.Select
-        aria-label={localize('com_nav_account_settings')}
-        data-testid="nav-user"
-        className="mt-text-sm flex h-auto w-full items-center gap-2 rounded-xl p-2 text-sm transition-all duration-200 ease-in-out hover:bg-accent"
-      >
-        <div className="-ml-0.9 -mt-0.8 h-8 w-8 flex-shrink-0">
-          <div className="relative flex">
-            {name.length === 0 ? (
-              <div
-                style={{
-                  backgroundColor: 'rgb(121, 137, 255)',
-                  width: '32px',
-                  height: '32px',
-                  boxShadow: 'rgba(240, 246, 252, 0.1) 0px 0px 0px 1px',
-                }}
-                className="relative flex items-center justify-center rounded-full p-1 text-text-primary"
-                aria-hidden="true"
-              >
-                <UserIcon />
-              </div>
-            ) : (
-              <img
-                className="rounded-full"
-                src={(user?.avatar ?? '') || avatarSrc}
-                alt={`${name}'s avatar`}
-              />
-            )}
+      <div className="mt-text-sm flex justify-between h-auto w-full items-center gap-2 bg-[#f2f2f2] dark:bg-[#292a32] border border-[#e0e0e0] dark:border-[#585c6e] rounded-full p-2 text-sm transition-all duration-200 ease-in-out hover:bg-accent">
+        <div className="flex items-center gap-2">
+          <div className="-ml-0.9 -mt-0.8 h-8 w-8 flex-shrink-0">
+            <div className="relative flex">
+              {name.length === 0 ? (
+                <div
+                  style={{
+                    backgroundColor: 'rgb(121, 137, 255)',
+                    width: '32px',
+                    height: '32px',
+                    boxShadow: 'rgba(240, 246, 252, 0.1) 0px 0px 0px 1px',
+                  }}
+                  className="relative flex items-center justify-center rounded-full p-1 text-text-primary"
+                  aria-hidden="true"
+                >
+                  <UserIcon />
+                </div>
+              ) : (
+                <img
+                  className="rounded-full"
+                  src={(user?.avatar ?? '') || avatarSrc}
+                  alt={`${name}'s avatar`}
+                />
+              )}
+            </div>
+          </div>
+          <div
+            className="mt-2 grow overflow-hidden text-ellipsis whitespace-nowrap text-left text-text-primary font-[500] text-base select-none"
+            style={{ marginTop: '0', marginLeft: '0' }}
+          >
+            {user?.name ?? user?.username ?? localize('com_nav_user')}
           </div>
         </div>
-        <div
-          className="mt-2 grow overflow-hidden text-ellipsis whitespace-nowrap text-left text-text-primary"
-          style={{ marginTop: '0', marginLeft: '0' }}
+        <Select.Select
+          aria-label={localize('com_nav_account_settings')}
+          data-testid="nav-user"
         >
-          {user?.name ?? user?.username ?? localize('com_nav_user')}
-        </div>
-      </Select.Select>
+          <SettingsIcon className="stroke-[#828282] hover:stroke-[#ccc]" />
+        </Select.Select>
+      </div>
       <Select.SelectPopover
         className="popover-ui w-[235px]"
         style={{
           transformOrigin: 'bottom',
           marginRight: '0px',
-          translate: '0px',
+          bottom: '20px',
         }}
       >
         <div className="text-token-text-secondary ml-3 mr-2 py-2 text-sm" role="note">

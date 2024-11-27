@@ -18,6 +18,11 @@ module.exports = {
       width: {
         authPageWidth: '370px',
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: 0 },
@@ -27,10 +32,40 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: 0 },
         },
+        'pulse-slow': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.8' },
+        },
+        'stream-bg': {
+          '0%, 100%': { scale: '1', filter: 'hue-rotate(0deg)' },
+          '25%': { scale: '1.2' },
+          '50%': { filter: 'hue-rotate(40deg)' },
+          '75%': { scale: '1.2' },
+        },
+        'stream-orb-bg': {
+          '0%': { rotate: '0deg', 'filter': 'hue-rotate(0deg)' },
+          '50%': { filter: 'hue-rotate(100deg)' },
+          '100%': { rotate: '360deg', filter: 'hue-rotate(0deg)' },
+        },
+        'stream-orb': {
+          '0%, 100%': { scale: '1' },
+          '25%': { scale: '1.8' },
+          '50%': { scale: '1.2' },
+        },
+        'shift': {
+          '0%': { backgroundPosition: '0% 0%' },
+          '50%': { backgroundPosition: '100% 0%' },
+          '100%': { backgroundPosition: '0% 0%' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'pulse-slow': 'pulse-slow 16s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'stream-bg': 'stream-bg 10s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'stream-orb-bg': 'stream-orb-bg 10s cubic-bezier(0.6, 0, 0.4, 1) infinite',
+        'stream-orb': 'stream-orb 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'shift': 'shift 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       colors: {
         gray: {

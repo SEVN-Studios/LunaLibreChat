@@ -39,7 +39,7 @@
   --font-size-xl: 1.25rem;
 }
 html {
-  --text-primary: var(--gray-800);
+  --text-primary: /* var(--gray-800) */ #4f4f4f;
   --text-secondary: var(--gray-600);
   --text-secondary-alt: var(--gray-500);
   --text-tertiary: var(--gray-500);
@@ -49,12 +49,12 @@ html {
   --header-button-hover: var(--gray-50);
   --surface-active: var(--gray-100);
   --surface-hover: var(--gray-200);
-  --surface-primary: var(--white);
-  --surface-primary-alt: var(--gray-50);
+  --surface-primary: /* var(--white) */ var(--background);
+  --surface-primary-alt: /* var(--gray-50) */ var(--white);
   --surface-primary-contrast: var(--gray-100);
   --surface-secondary: var(--gray-50);
   --surface-secondary-alt: var(--gray-300);
-  --surface-tertiary: var(--gray-100);
+  --surface-tertiary: /* var(--gray-100) */ #f2f2f2;
   --surface-tertiary-alt: var(--white);
   --surface-dialog: var(--white);
   --surface-submit: var(--green-500);
@@ -65,13 +65,13 @@ html {
   --border-xheavy: var(--gray-500);
   /* These are test styles */
 
-  --background: 0 0% 100%;
+  --background: /* 0 0% 100% */ #f2f2f2;
   --foreground: 0 0% 3.9%;
   --card: 0 0% 100%;
   --card-foreground: 0 0% 3.9%;
-  --primary: 0 0% 9%;
+  --primary: /* 0 0% 9% */ #ccc;
   --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 96.1%;
+  --secondary: /* 0 0% 96.1% */ #463cff;
   --secondary-foreground: 0 0% 9%;
   --muted: 0 0% 96.1%;
   --muted-foreground: 0 0% 45.1%;
@@ -91,7 +91,7 @@ html {
   --switch-unchecked: 0 0% 58%;
 }
 .dark {
-  --text-primary: var(--gray-100);
+  --text-primary: /* var(--gray-100) */ #f2f2f2;
   --text-secondary: var(--gray-300);
   --text-secondary-alt: var(--gray-400);
   --text-tertiary: var(--gray-500);
@@ -100,12 +100,12 @@ html {
   --header-button-hover: var(--gray-700);
   --surface-active: var(--gray-500);
   --surface-hover: var(--gray-600);
-  --surface-primary: var(--gray-900);
-  --surface-primary-alt: var(--gray-850);
+  --surface-primary: /* var(--gray-900) */ #0b0b0e;
+  --surface-primary-alt: /* var(--gray-850) */ #1a1b20;
   --surface-primary-contrast: var(--gray-850);
   --surface-secondary: var(--gray-800);
   --surface-secondary-alt: var(--gray-800);
-  --surface-tertiary: var(--gray-700);
+  --surface-tertiary: /* var(--gray-700) */ #292a32;
   --surface-tertiary-alt: var(--gray-700);
   --surface-dialog: var(--gray-850);
   --surface-submit: var(--green-600);
@@ -116,13 +116,13 @@ html {
   --border-xheavy: var(--gray-400);
   /* These are test styles */
 
-  --background: 0 0% 7%;
+  --background: /* 0 0% 7% */ #0b0b0e;
   --foreground: 0 0% 98%;
   --card: 0 0% 3.9%;
   --card-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
+  --primary: /* 0 0% 98% */ #ccc;
   --primary-foreground: 0 0% 9%;
-  --secondary: 0 0% 14.9%;
+  --secondary: /* 0 0% 14.9% */ #463cff;
   --secondary-foreground: 0 0% 98%;
   --muted: 0 0% 14.9%;
   --muted-foreground: 0 0% 63.9%;
@@ -1221,7 +1221,7 @@ button {
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  background-color: transparent;
+  background-color: var(--secondary);
   background-color: rgba(16, 163, 156, var(--tw-bg-opacity));
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
@@ -1322,7 +1322,7 @@ html {
 .dark body,
 .dark html {
   --tw-bg-opacity: 1;
-  background-color: rgba(23, 23, 23, var(--tw-bg-opacity));
+  background-color: var(--surface-primary);
 }
 
 #__next,
@@ -1579,15 +1579,7 @@ html {
     skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
     scaleY(var(--tw-scale-y));
 }
-body,
-html {
-  height: 100%;
-}
-.dark body,
-.dark html {
-  --tw-bg-opacity: 1;
-  background-color: rgba(33, 33, 33, var(--tw-bg-opacity));
-}
+
 #__next,
 #root {
   height: 100%;
