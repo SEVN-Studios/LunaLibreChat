@@ -164,7 +164,7 @@ const ChatForm = ({ index = 0 }) => {
             />
           )}
           <PromptsCommand index={index} textAreaRef={textAreaRef} submitPrompt={submitPrompt} />
-          <div className="transitional-all relative flex w-full flex-grow flex-col overflow-hidden rounded-full bg-surface-tertiary text-text-primary border border-[#585c6e] z-[1] duration-200">
+          <div className="transitional-all relative flex w-full flex-grow flex-col overflow-hidden rounded-[26px] bg-surface-tertiary text-text-primary border border-[#585c6e] z-[1] duration-200">
             <TextareaHeader addedConvo={addedConvo} setAddedConvo={setAddedConvo} />
             <FileFormWrapper disableInputs={disableInputs}>
               {endpoint && (

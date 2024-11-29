@@ -59,6 +59,12 @@ const Registration: React.FC = () => {
   const renderInput = (id: string, label: string, type: string, validation: object) => (
     <div className="mb-4">
       <div className="relative">
+        <label
+          htmlFor={id}
+          className="text-base text-text-secondary-alt mb-1 rtl:peer-focus:left-auto"
+        >
+          {localize(label)}
+        </label>
         <input
           id={id}
           type={type}
@@ -70,23 +76,12 @@ const Registration: React.FC = () => {
           )}
           aria-invalid={!!errors[id]}
           className="
-            webkit-dark-styles transition-color peer w-full rounded-2xl border border-border-light
-            bg-surface-primary px-3.5 pb-2.5 pt-3 text-text-primary duration-200 focus:border-green-500 focus:outline-none
+            peer w-full rounded-full text-[#333] placeholder:text-[#666] border border-[#666]
+            bg-transparent px-4 pb-2.5 pt-3 duration-200 focus:outline-black outline-offset-0
           "
           placeholder=" "
           data-testid={id}
         />
-        <label
-          htmlFor={id}
-          className="
-            absolute start-3 top-1.5 z-10 origin-[0] -translate-y-4 scale-75 transform bg-surface-primary px-2 text-sm text-text-secondary-alt duration-200
-            peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100
-            peer-focus:top-1.5 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-green-500
-            rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4
-          "
-        >
-          {localize(label)}
-        </label>
       </div>
       {errors[id] && (
         <span role="alert" className="mt-1 text-sm text-red-500">
@@ -183,18 +178,20 @@ const Registration: React.FC = () => {
                 disabled={Object.keys(errors).length > 0}
                 type="submit"
                 aria-label="Submit registration"
-                className="btn-primary w-full transform rounded-2xl px-4 py-3 tracking-wide transition-colors duration-200"
+                className="bg-[#463cff] hover:bg-[#7770ff] disabled:bg-[#444] text-white w-full active:scale-95 transform rounded-full px-4 py-3 tracking-wide transition-all ease-out duration-300"
               >
                 {isSubmitting ? <Spinner /> : localize('com_auth_continue')}
               </button>
             </div>
           </form>
-
-          <p className="my-4 text-center text-sm font-light text-gray-700 dark:text-white">
+          <p className="my-4 text-sm text-[#333] text-center mb-[52px]">
             {localize('com_auth_already_have_account')}{' '}
-            <a href="/login" aria-label="Login" className="p-1 text-green-500">
+            <a href="/login" aria-label="Login" className="text-black underline underline-offset-2">
               {localize('com_auth_login')}
             </a>
+          </p>
+          <p className="text-sm text-[#333] text-center">
+            By creating an account, you agree to the Terms of use and Privacy Policy.
           </p>
         </>
       )}

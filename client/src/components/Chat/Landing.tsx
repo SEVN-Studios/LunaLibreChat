@@ -13,7 +13,7 @@ import { BirthdayIcon } from '~/components/svg';
 import ConvoStarter from './ConvoStarter';
 
 export default function Landing({ Header }: { Header?: ReactNode }) {
-  const { conversation } = useChatContext();
+  const { conversation, ask } = useChatContext();
   const agentsMap = useAgentsMapContext();
   const assistantMap = useAssistantsMapContext();
   const { data: startupConfig } = useGetStartupConfig();
@@ -24,7 +24,7 @@ export default function Landing({ Header }: { Header?: ReactNode }) {
     'Show me a code snippet of a website\'s sticky header',
     'Explain the plot of Bridge to Terabithia',
     'How to be extroverted if I am an introvert',
-  ]
+  ];
 
   const localize = useLocalize();
 
@@ -93,15 +93,15 @@ export default function Landing({ Header }: { Header?: ReactNode }) {
 
     const message = localize('com_nav_welcome_message');
 
-    return `${message.slice(0, -1)}, ${user?.name}?`;
+    return `${message.slice(0, -1)}, ${user?.name.split(' ')[0]}?`;
   };
 
   function onSuggestionSelect(suggestion: string) {
-    // TODO add suggestion selection
+    ask({ text: suggestion });
   }
 
   return (
-    <div className="relative h-full z-[1]">
+    <div className="relative h-full">
       <div className="absolute left-0 right-0">{Header != null ? Header : null}</div>
       <div className="flex h-full flex-col items-center justify-center">
         {/* <div className={cn('relative h-12 w-12', name && avatar ? 'mb-0' : 'mb-3')}>
@@ -144,6 +144,9 @@ export default function Landing({ Header }: { Header?: ReactNode }) {
             <div
               className="flex justify-center items-center w-full max-w-[280px] border border-[#585c6e] hover:border-[#777c96] rounded-full group px-10 py-2.5 mx-auto transition-colors duration-300 cursor-pointer"
               onClick={() => onSuggestionSelect(suggestion)}
+              onKeyDown={(e) => e.key == 'Enter' && onSuggestionSelect(suggestion)}
+              tabIndex={0}
+              role="button"
               key={i}
             >
               <p className="text-[#333] dark:text-[#828282] group-hover:text-[#4f4f4f] dark:group-hover:text-[#f2f2f2] text-sm text-center transition-colors duration-300">

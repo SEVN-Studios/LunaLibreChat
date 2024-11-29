@@ -56,21 +56,17 @@ function AuthLayout({
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-white dark:bg-gray-900">
+    <div className="w-full min-h-screen dark:bg-[#0b0b0e] px-5 pt-10 md:px-[80px] md:pt-[100px] pb-10 relative overflow-hidden">
       <Banner />
-      <BlinkAnimation active={isFetching}>
-        <div className="mt-6 h-10 w-full bg-cover">
-          <img src="/assets/logo.svg" className="h-full w-full object-contain" alt="Logo" />
-        </div>
-      </BlinkAnimation>
       <DisplayError />
       <div className="absolute bottom-0 left-0 md:m-4">
         <ThemeSelector />
       </div>
 
-      <div className="flex flex-grow items-center justify-center">
-        <div className="w-authPageWidth overflow-hidden bg-white px-6 py-4 dark:bg-gray-900 sm:max-w-md sm:rounded-lg">
-          {!startupConfigError && !isFetching && (
+      <div className="flex flex-grow items-center relative">
+        <div className="w-[1028px] h-[1028px] bg-[radial-gradient(50%_50%,_rgba(70,60,255,0.44)_0%,_rgba(70,60,255,0.00)_100%)] animate-pulse-slow absolute top-6 -left-[70px] -z-[1]"></div>
+        <div className="w-full max-w-[400px] overflow-hidden px-6 py-4 sm:max-w-md sm:rounded-lg">
+          {!startupConfigError && !isFetching && !(pathname.includes('login') || pathname.includes('register')) && (
             <h1
               className="mb-4 text-center text-3xl font-semibold text-black dark:text-white"
               style={{ userSelect: 'none' }}
@@ -78,10 +74,21 @@ function AuthLayout({
               {header}
             </h1>
           )}
-          {children}
           {(pathname.includes('login') || pathname.includes('register')) && (
-            <SocialLoginRender startupConfig={startupConfig} />
+            <div>
+              <h2 className="inline-block font-medium text-[30px] text-[#333] dark:text-[#f2f2f2]">Take me to&nbsp;</h2>
+              <p className="inline-block font-bold text-black dark:text-white text-6xl">
+                <span>Luna</span>
+                <span className="italic">AI</span>
+              </p>
+            </div>
           )}
+          <div className="flex flex-col items-center bg-white dark:bg-[#f2f2f2] rounded-[20px] px-7 py-9">
+            {children}
+            {(pathname.includes('login') || pathname.includes('register')) && (
+              <SocialLoginRender startupConfig={startupConfig} />
+            )}
+          </div>
         </div>
       </div>
       <Footer startupConfig={startupConfig} />

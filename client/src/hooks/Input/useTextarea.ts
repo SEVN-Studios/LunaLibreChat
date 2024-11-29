@@ -114,7 +114,9 @@ export default function useTextarea({
         ? getAssistantName({ name: assistantName, localize })
         : getSender(conversation as TEndpointOption);
 
-      return `${localize('com_endpoint_message')} ${sender ? sender : 'AI'}`;
+      // return `${localize('com_endpoint_message')} ${sender ? sender : 'AI'}`;
+      // TODO: Add translations
+      return 'Type your message here';
     };
 
     const placeholder = getPlaceholderText();

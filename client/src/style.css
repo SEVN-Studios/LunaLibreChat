@@ -116,13 +116,13 @@ html {
   --border-xheavy: var(--gray-400);
   /* These are test styles */
 
-  --background: /* 0 0% 7% */ #0b0b0e;
+  --background: /* 0 0% 7% */ 240, 12%, 5%;
   --foreground: 0 0% 98%;
   --card: 0 0% 3.9%;
   --card-foreground: 0 0% 98%;
-  --primary: /* 0 0% 98% */ #ccc;
+  --primary: /* 0 0% 98% */ 0, 0%, 80%;
   --primary-foreground: 0 0% 9%;
-  --secondary: /* 0 0% 14.9% */ #463cff;
+  --secondary: /* 0 0% 14.9% */ 243, 100%, 62%;
   --secondary-foreground: 0 0% 98%;
   --muted: 0 0% 14.9%;
   --muted-foreground: 0 0% 63.9%;
@@ -1222,7 +1222,6 @@ button {
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
   background-color: var(--secondary);
-  background-color: rgba(16, 163, 156, var(--tw-bg-opacity));
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 .btn-secondary:hover {
