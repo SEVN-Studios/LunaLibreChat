@@ -1,7 +1,7 @@
 import React from 'react';
 import { Root, Trigger, Content, Portal } from '@radix-ui/react-popover';
 import MenuItem from '~/components/Chat/Menus/UI/MenuItem';
-import type { Option } from '~/common';
+import type { Option, OptionWithIcon } from '~/common';
 import { useLocalize } from '~/hooks';
 import { cn } from '~/utils/';
 import { useMultiSearch } from './MultiSearch';
@@ -19,6 +19,19 @@ type SelectDropDownProps = {
   iconSide?: 'left' | 'right';
   renderOption?: () => React.ReactNode;
 };
+
+function getOptionText(option: string | Option | OptionWithIcon): string {
+  if (typeof option === 'string') {
+    return option;
+  }
+  if ('label' in option) {
+    return option.label ?? '';
+  }
+  if ('value' in option) {
+    return (option.value ?? '') + '';
+  }
+  return '';
+}
 
 function SelectDropDownPop({
   title: _title,
@@ -48,9 +61,13 @@ function SelectDropDownPop({
   // reset once the component is unmounted (as per a normal search)
   const [filteredValues, searchRender] = useMultiSearch<string[] | Option[]>({
     availableOptions: availableValues,
+    getTextKeyOverride: (option) => getOptionText(option).toUpperCase(),
   });
   const hasSearchRender = Boolean(searchRender);
   const options = hasSearchRender ? filteredValues : availableValues;
+  const selectedValue = typeof value == 'string' && options[0] == 'string' ?
+    value:
+    (options as Option[]).filter(_ => _.value == value)[0].label ?? '';
 
   return (
     <Root>
@@ -81,7 +98,7 @@ function SelectDropDownPop({
                   {/* {!showLabel && !emptyTitle && (
                     <span className="text-xs text-gray-700 dark:text-gray-500">{title}:</span>
                   )} */}
-                  {typeof value !== 'string' && value ? value.label ?? '' : value ?? ''}
+                  {typeof value !== 'string' && value ? value.label ?? '' : selectedValue ?? ''}
                 </span>
               </span>
               <span className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -117,9 +134,9 @@ function SelectDropDownPop({
                 return (
                   <MenuItem
                     key={option}
-                    title={option}
-                    value={option}
-                    selected={!!(value && value === option)}
+                    title={option.label ?? option}
+                    value={option.value ?? option}
+                    selected={!!(value && value === (option.value ?? option))}
                     onClick={() => setValue(option)}
                   />
                 );

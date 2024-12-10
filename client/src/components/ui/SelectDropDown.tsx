@@ -101,6 +101,9 @@ function SelectDropDown({
   });
   const hasSearchRender = searchRender != null;
   const options = hasSearchRender ? filteredValues : availableValues;
+  const selectedValue = typeof value == 'string' && options[0] == 'string' ?
+    value:
+    (options as Option[]).filter(_ => _.value == value)[0].label ?? '';
 
   const renderIcon = showOptionIcon && value != null && (value as OptionWithIcon).icon != null;
 
@@ -157,7 +160,7 @@ function SelectDropDown({
                         return value.label ?? '';
                       }
 
-                      return value;
+                      return selectedValue;
                     })()}
                   </span>
                 </span>
