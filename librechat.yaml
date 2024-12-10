@@ -177,13 +177,30 @@ endpoints:
       apiKey: '${OPENROUTER_KEY}'
       baseURL: 'https://openrouter.ai/api/v1'
       models:
-        default: ['meta-llama/llama-3-70b-instruct']
-        fetch: true
+        default: [
+          'openai/gpt-3.5-turbo',
+          'openai/gpt-4',
+          'openai/gpt-4o',
+          'google/gemini-pro',
+          'mistralai/mistral-tiny',
+          'mistralai/mistral-large',
+          'anthropic/claude-3-haiku',
+          'anthropic/claude-3-5-haiku',
+          'anthropic/claude-3-sonnet',
+          'anthropic/claude-3.5-sonnet',
+          'anthropic/claude-3-opus',
+          'perplexity/pplx-7b-online',
+          'perplexity/pplx-70b-online'
+        ]
+        fetch: false
       titleConvo: true
-      titleModel: 'meta-llama/llama-3-70b-instruct'
+      titleModel: 'openai/gpt-4o'
       # Recommended: Drop the stop parameter from the request as Openrouter models use a variety of stop tokens.
       dropParams: ['stop']
       modelDisplayLabel: 'OpenRouter'
+
+# fileStrategy: 's3'
+
 # fileConfig:
 #   endpoints:
 #     assistants:
