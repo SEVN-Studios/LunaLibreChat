@@ -100,7 +100,7 @@ export function useMultiSearch<OptionsType extends unknown[]>({
 
   // Define the helper function used to enable search
   // If this is invalidly described, we will assume developer error - tf. avoid rendering
-  const getTextKeyHelper = getTextKeyOverride || defaultGetStringKey;
+  const getTextKeyHelper = getTextKeyOverride || ws;
 
   // Iterate said options
   const filteredOptions = useMemo(() => {

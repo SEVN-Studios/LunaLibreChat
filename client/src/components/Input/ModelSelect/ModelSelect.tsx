@@ -31,7 +31,7 @@ export default function ModelSelect({
   const { endpoint: _endpoint, endpointType } = conversation;
   let models: string[] | Option[] = modelsQuery?.data?.[_endpoint] ?? [];
   const endpoint = endpointType ?? _endpoint;
-  console.log('ENDPOINT', endpoint, endpointType);
+
   if ((endpoint as string) == 'custom') {
     models = [
       { label: 'ChatGPT 3.5', value: 'openai/gpt-3.5-turbo' },

@@ -103,7 +103,7 @@ function SelectDropDown({
   const options = hasSearchRender ? filteredValues : availableValues;
   const selectedValue = typeof value == 'string' && options[0] == 'string' ?
     value:
-    (options as Option[]).filter(_ => _.value == value)[0].label ?? '';
+    (options as Option[]).filter(_ => _.value == value)[0]?.label ?? value ?? '';
 
   const renderIcon = showOptionIcon && value != null && (value as OptionWithIcon).icon != null;
 
