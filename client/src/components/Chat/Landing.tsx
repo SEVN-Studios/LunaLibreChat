@@ -126,7 +126,7 @@ export default function Landing({ Header }: { Header?: ReactNode }) {
         </div> */}
         {name ? (
           <div className="flex flex-col items-center gap-0 p-2">
-            <div className="text-center text-2xl font-medium dark:text-white">{name}</div>
+            <div className="text-center text-2xl font-medium text-black dark:text-white">{name}</div>
             <div className="max-w-md text-center text-sm font-normal text-text-primary ">
               {description ? description : localize('com_nav_welcome_message')}
             </div>
