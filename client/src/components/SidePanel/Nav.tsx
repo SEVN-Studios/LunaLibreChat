@@ -50,6 +50,7 @@ export default function Nav({ links, isCollapsed, resize, defaultActive }: NavPr
                           <span className="sr-only">{link.title}</span>
                         </Button>
                       }
+                      key={index}
                     ></TooltipAnchor>
                   ) : (
                     <Accordion
