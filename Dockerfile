@@ -22,8 +22,8 @@ RUN \
     npm config set fetch-retry-mintimeout 15000 ; \
     npm install --no-audit; \
     # React client build
-    NODE_OPTIONS="--max-old-space-size=2048" npm run frontend:dev; \
-    npm prune; \
+    NODE_OPTIONS="--max-old-space-size=2048" npm run frontend; \
+    npm prune --production; \
     npm cache clean --force
 
 RUN mkdir -p /app/client/public/images /app/api/logs
@@ -31,7 +31,7 @@ RUN mkdir -p /app/client/public/images /app/api/logs
 # Node API setup
 EXPOSE 3080
 ENV HOST=0.0.0.0
-CMD ["npm", "run", "backend:dev"]
+CMD ["npm", "run", "backend"]
 
 # Optional: for client with nginx routing
 # FROM nginx:stable-alpine AS nginx-client
