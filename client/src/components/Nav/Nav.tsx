@@ -168,6 +168,14 @@ const Nav = ({
                     onMouseLeave={handleMouseLeave}
                     ref={containerRef}
                   >
+                    <div className="flex flex-row justify-between items-center px-2 mt-4 mb-1">
+                      <div className="flex flex-row items-center">
+                        <p className="font-medium text-black dark:text-white text-[26px]">
+                          <span>Luna</span>
+                          <span className="italic">AI</span>
+                        </p>
+                      </div>
+                    </div>
                     <NewChat
                       toggleNav={itemToggleNav}
                       isSmallScreen={isSmallScreen}
