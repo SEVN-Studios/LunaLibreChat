@@ -67,7 +67,7 @@ function SelectDropDownPop({
   const options = hasSearchRender ? filteredValues : availableValues;
   const selectedValue = typeof value == 'string' && options[0] == 'string' ?
     value:
-    (options as Option[]).filter(_ => _.value == value)[0]?.label ?? value ?? '';
+    (options as Option[]).filter(_ => _.value == value)[0]?.label ?? '';
 
   return (
     <Root>
@@ -98,7 +98,7 @@ function SelectDropDownPop({
                   {/* {!showLabel && !emptyTitle && (
                     <span className="text-xs text-gray-700 dark:text-gray-500">{title}:</span>
                   )} */}
-                  {typeof value !== 'string' && value ? value.label ?? '' : selectedValue ?? ''}
+                  {typeof value !== 'string' && value ? value.label ?? '' : selectedValue}
                 </span>
               </span>
               <span className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -133,11 +133,11 @@ function SelectDropDownPop({
               {options.map((option) => {
                 return (
                   <MenuItem
-                    key={option}
+                    key={option.value ?? option}
                     title={option.label ?? option}
                     value={option.value ?? option}
                     selected={!!(value && value === (option.value ?? option))}
-                    onClick={() => setValue(option)}
+                    onClick={() => setValue(option.value ?? option)}
                   />
                 );
               })}
