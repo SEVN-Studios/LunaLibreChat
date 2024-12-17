@@ -103,14 +103,14 @@ function SelectDropDown({
   const options = hasSearchRender ? filteredValues : availableValues;
   const selectedValue = typeof value == 'string' && options[0] == 'string' ?
     value:
-    (options as Option[]).filter(_ => _.value == value)[0]?.label ?? value ?? '';
+    (options as Option[]).filter(_ => _.value == value)[0]?.label ?? '';
 
   const renderIcon = showOptionIcon && value != null && (value as OptionWithIcon).icon != null;
 
   return (
     <div className={cn('flex items-center justify-center gap-2 ', containerClassName ?? '')}>
       <div className={cn('relative w-full', subContainerClassName ?? '')}>
-        <Listbox value={value} onChange={setValue} disabled={disabled}>
+        <Listbox value={selectedValue} onChange={setValue} disabled={disabled}>
           {({ open }) => (
             <>
               <ListboxButton
