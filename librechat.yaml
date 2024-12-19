@@ -92,7 +92,7 @@ registration:
 
 # Definition of custom endpoints
 endpoints:
-  # assistants:
+  assistants:
   #   disableBuilder: false # Disable Assistants Builder Interface by setting to `true`
   #   pollIntervalMs: 3000  # Polling interval for checking assistant updates
   #   timeoutMs: 180000  # Timeout for assistant operations
@@ -104,7 +104,7 @@ endpoints:
   #   # (optional) Models that support retrieval, will default to latest known OpenAI models that support the feature
   #   retrievalModels: ["gpt-4-turbo-preview"]
   #   # (optional) Assistant Capabilities available to all users. Omit the ones you wish to exclude. Defaults to list below.
-  #   capabilities: ["code_interpreter", "retrieval", "actions", "tools", "image_vision"]
+    capabilities: ["code_interpreter", "retrieval", "actions", "tools", "image_vision"]
   custom:
     # Groq Example
     # - name: 'groq'
@@ -178,19 +178,21 @@ endpoints:
       baseURL: 'https://openrouter.ai/api/v1'
       models:
         default: [
-          'openai/gpt-3.5-turbo',
-          'openai/gpt-4',
           'openai/gpt-4o',
-          'google/gemini-pro',
-          'mistralai/mistral-tiny',
-          'mistralai/mistral-large',
-          'anthropic/claude-3-haiku',
+          'openai/gpt-4o-mini',
+          'openai/o1',
+          'openai/o1-mini',
+          'openai/gpt-4',
+          'google/gemini-pro-1.5',
+          'google/gemini-flash-1.5',
+          'google/gemini-2.0-flash-exp:free',
           'anthropic/claude-3-5-haiku',
-          'anthropic/claude-3-sonnet',
           'anthropic/claude-3.5-sonnet',
+          'anthropic/claude-3-haiku',
+          'anthropic/claude-3-sonnet',
           'anthropic/claude-3-opus',
-          'perplexity/pplx-7b-online',
-          'perplexity/pplx-70b-online'
+          'perplexity/llama-3.1-sonar-small-128k-online',
+          'perplexity/llama-3.1-sonar-large-128k-online'
         ]
         fetch: false
       titleConvo: true
