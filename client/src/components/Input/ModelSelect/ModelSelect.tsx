@@ -34,20 +34,21 @@ export default function ModelSelect({
 
   if ((endpoint as string) == 'custom') {
     models = [
-      { label: 'ChatGPT 3.5', value: 'openai/gpt-3.5-turbo' },
-      { label: 'ChatGPT 4', value: 'openai/gpt-4' },
       { label: 'ChatGPT 4o', value: 'openai/gpt-4o' },
-      { label: 'OpenAI: o1 Preview', value: 'openai/o1-preview' },
-      { label: 'Gemini Pro', value: 'google/gemini-pro' },
-      { label: 'Mistral Tiny', value: 'mistralai/mistral-tiny' },
-      { label: 'Mistral Large', value: 'mistralai/mistral-large' },
-      { label: 'Anthropic Claude 3 Haiku', value: 'anthropic/claude-3-haiku' },
+      { label: 'ChatGPT 4o mini', value: 'openai/gpt-4o-mini' },
+      { label: 'ChatGPT o1', value: 'openai/o1' },
+      { label: 'ChatGPT o1 mini', value: 'openai/o1-mini' },
+      { label: 'ChatGPT 4', value: 'openai/gpt-4' },
+      { label: 'Gemini Pro 1.5', value: 'google/gemini-pro-1.5' },
+      { label: 'Gemini Flash 1.5', value: 'google/gemini-flash-1.5' },
+      { label: 'Gemini Flash 2.0 Experimental', value: 'google/gemini-2.0-flash-exp:free' },
       { label: 'Anthropic Claude 3.5 Haiku', value: 'anthropic/claude-3-5-haiku' },
-      { label: 'Anthropic Claude 3 Sonnet', value: 'anthropic/claude-3-sonnet' },
       { label: 'Anthropic Claude 3.5 Sonnet', value: 'anthropic/claude-3.5-sonnet' },
+      { label: 'Anthropic Claude 3 Haiku', value: 'anthropic/claude-3-haiku' },
+      { label: 'Anthropic Claude 3 Sonnet', value: 'anthropic/claude-3-sonnet' },
       { label: 'Anthropic Claude 3 Opus', value: 'anthropic/claude-3-opus' },
-      { label: 'Perplexity PPLX 7B Online', value: 'perplexity/pplx-7b-online' },
-      { label: 'Perplexity PPLX 70B Online', value: 'perplexity/pplx-70b-online' },
+      { label: 'Perplexity: Llama 3.1 Sonar 8B Online', value: 'perplexity/llama-3.1-sonar-small-128k-online' },
+      { label: 'Perplexity: Llama 3.1 Sonar 70B Online', value: 'perplexity/llama-3.1-sonar-large-128k-online' },
     ];
   }
 
