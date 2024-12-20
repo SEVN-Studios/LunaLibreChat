@@ -13,7 +13,7 @@ function Login() {
 
   return (
     <>
-      {error && <ErrorMessage>{localize(getLoginError(error))}</ErrorMessage>}
+      {error && <ErrorMessage className="text-gray-600">{localize(getLoginError(error))}</ErrorMessage>}
       {startupConfig?.emailLoginEnabled && (
         <LoginForm
           onSubmit={login}

@@ -170,13 +170,7 @@ export default function Conversation({
           )}
           title={title ?? ''}
         >
-          {/* <EndpointIcon
-            conversation={conversation}
-            endpointsConfig={endpointsConfig}
-            size={20}
-            context="menu-item"
-          /> */}
-          <img className="w-5 h-5" src="/assets/logo.svg" alt="Luna" />
+          <img className="w-5 h-5" src="/assets/luna-icon.svg" alt="Luna" />
           <div className="relative line-clamp-1 flex-1 grow overflow-hidden" title={conversation.model ?? ''}>{title}</div>
           {isActiveConvo ? (
             <div className="absolute bottom-0 right-0 top-0 w-20 rounded-r-lg bg-gradient-to-l" />
