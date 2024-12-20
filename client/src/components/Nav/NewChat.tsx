@@ -34,22 +34,20 @@ const NewChatButtonIcon = ({ conversation }: { conversation: TConversation | nul
 
   return (
     <div className="h-7 w-7 flex-shrink-0">
-      {iconURL && iconURL.includes('http') ? (
-        <ConvoIconURL preset={conversation} endpointIconURL={iconURL} context="nav" />
-      ) : (
-        <div className="shadow-stroke relative flex h-full items-center justify-center rounded-full bg-white text-black">
-          {endpoint && Icon != null && (
-            <Icon
-              size={41}
-              context="nav"
-              className="h-2/3 w-2/3"
-              endpoint={endpoint}
-              endpointType={endpointType}
-              iconURL={endpointIconURL}
-            />
-          )}
-        </div>
-      )}
+      {/* <ConvoIconURL preset={conversation} endpointIconURL={iconURL} context="nav" /> */}
+      <img className="icon-xl" src="/assets/luna-icon.svg" alt="Luna" />
+      {/* <div className="shadow-stroke relative flex h-full items-center justify-center rounded-full bg-white text-black">
+        {endpoint && Icon != null && (
+          <Icon
+            size={41}
+            context="nav"
+            className="h-2/3 w-2/3"
+            endpoint={endpoint}
+            endpointType={endpointType}
+            iconURL={endpointIconURL}
+          />
+        )}
+      </div> */}
     </div>
   );
 };

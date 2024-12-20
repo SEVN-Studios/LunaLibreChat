@@ -8,13 +8,13 @@ import type { MouseEvent, FocusEvent, KeyboardEvent } from 'react';
 import type { TConversation } from 'librechat-data-provider';
 import { useConversations, useNavigateToConvo, useMediaQuery } from '~/hooks';
 import { useUpdateConversationMutation } from '~/data-provider';
-import EndpointIcon from '~/components/Endpoints/EndpointIcon';
+import { ConvoIcon, EndpointIcon } from '~/components/Endpoints';
 import { NotificationSeverity } from '~/common';
 import { useToastContext } from '~/Providers';
 import { ConvoOptions } from './ConvoOptions';
 import { cn } from '~/utils';
 import store from '~/store';
-import { useLocalize } from '~/hooks'
+import { useLocalize } from '~/hooks';
 
 type KeyEvent = KeyboardEvent<HTMLInputElement>;
 
@@ -170,13 +170,14 @@ export default function Conversation({
           )}
           title={title ?? ''}
         >
-          <EndpointIcon
+          {/* <EndpointIcon
             conversation={conversation}
             endpointsConfig={endpointsConfig}
             size={20}
             context="menu-item"
-          />
-          <div className="relative line-clamp-1 flex-1 grow overflow-hidden">{title}</div>
+          /> */}
+          <img className="w-5 h-5" src="/assets/logo.svg" alt="Luna" />
+          <div className="relative line-clamp-1 flex-1 grow overflow-hidden" title={conversation.model ?? ''}>{title}</div>
           {isActiveConvo ? (
             <div className="absolute bottom-0 right-0 top-0 w-20 rounded-r-lg bg-gradient-to-l" />
           ) : (

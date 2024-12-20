@@ -108,7 +108,11 @@ const MessageRender = memo(
           <div>
             <div className="pt-0.5">
               <div className="flex h-6 w-6 items-center justify-center overflow-hidden rounded-full">
-                <Icon message={msg} conversation={conversation} assistant={assistant} />
+                {msg.isCreatedByUser ? (
+                  <Icon message={msg} conversation={conversation} assistant={assistant} />
+                ): (
+                  <img src="/assets/logo.svg" alt="Luna" />
+                )}
               </div>
             </div>
           </div>
