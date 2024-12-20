@@ -343,10 +343,10 @@ html {
 
 @font-face {
   font-display: swap;
-  font-family: StyreneB Regular;
+  font-family: 'Styrene B';
   font-style: normal;
   font-weight: 400;
-  src: url('$fonts/StyreneB-Regular.otf') format('otf');
+  src: url('$fonts/StyreneB-Regular.otf');
 }
 
 /*
