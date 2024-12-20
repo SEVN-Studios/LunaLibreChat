@@ -8,7 +8,8 @@ version: 1.1.5
 cache: true
 
 # Custom interface configuration
-# interface:
+interface:
+  endpointsMenu: false
   # Privacy policy settings
   # privacyPolicy:
   #   externalUrl: 'https://librechat.ai/privacy-policy'
