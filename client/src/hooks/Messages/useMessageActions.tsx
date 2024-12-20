@@ -102,11 +102,11 @@ export default function useMessageActions(props: TMessageActions) {
     if (message?.isCreatedByUser === true) {
       return UsernameDisplay ? (user?.name ?? '') || user?.username : localize('com_user_message');
     } else if (agent) {
-      return agent.name ?? 'Assistant';
+      return typeof agent.name == 'string' ? `Luna ${agent.name}`: 'Luna (Assistant)';
     } else if (assistant) {
-      return assistant.name ?? 'Assistant';
+      return typeof assistant.name == 'string' ? `Luna ${assistant.name}`: 'Luna (Assistant)';
     } else {
-      return message?.sender;
+      return 'Luna';
     }
   }, [message, agent, assistant, UsernameDisplay, user, localize]);
 
