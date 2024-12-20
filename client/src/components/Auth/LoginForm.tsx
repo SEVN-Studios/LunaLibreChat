@@ -5,6 +5,7 @@ import type { TLoginUser, TStartupConfig } from 'librechat-data-provider';
 import type { TAuthContext } from '~/common';
 import { useResendVerificationEmail } from '~/data-provider';
 import { useLocalize } from '~/hooks';
+import { Spinner } from '../svg';
 
 type TLoginFormProps = {
   onSubmit: (data: TLoginUser) => void;
@@ -19,7 +20,7 @@ const LoginForm: React.FC<TLoginFormProps> = ({ onSubmit, startupConfig, error, 
     register,
     getValues,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<TLoginUser>();
   const [showResendLink, setShowResendLink] = useState<boolean>(false);
 
@@ -63,7 +64,7 @@ const LoginForm: React.FC<TLoginFormProps> = ({ onSubmit, startupConfig, error, 
   return (
     <>
       {showResendLink && (
-        <div className="mt-2 rounded-md border bg-green-500/10 px-3 py-2 text-sm text-gray-600 dark:text-gray-200">
+        <div className="mt-2 rounded-md border bg-green-500/10 px-3 py-2 text-sm text-gray-600">
           {localize('com_auth_email_verification_resend_prompt')}
           <button
             type="button"
@@ -154,7 +155,7 @@ const LoginForm: React.FC<TLoginFormProps> = ({ onSubmit, startupConfig, error, 
             type="submit"
             className="bg-[#463cff] hover:bg-[#7770ff] disabled:bg-[#444] text-white w-full active:scale-95 transform rounded-full px-4 py-3 tracking-wide transition-all ease-out duration-300"
           >
-            {localize('com_auth_continue')}
+            {isSubmitting ? <Spinner />: localize('com_auth_continue')}
           </button>
         </div>
       </form>
