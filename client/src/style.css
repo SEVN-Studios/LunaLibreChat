@@ -341,6 +341,14 @@ html {
   src: url('$fonts/roboto-mono-latin-400-italic.woff2') format('woff2');
 }
 
+@font-face {
+  font-display: swap;
+  font-family: StyreneB Regular;
+  font-style: normal;
+  font-weight: 400;
+  src: url('$fonts/StyreneB-Regular.otf') format('otf');
+}
+
 /*
 
 The default ChatGPT fonts, according to OpenAI's brand guidelines, are proprietary and require appropriate font license according to your use case.

@@ -9,6 +9,7 @@ module.exports = {
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
       mono: ['Roboto Mono', 'monospace'],
+      styrene: ['StyreneB Regular', 'sans-serif'],
     },
     // fontFamily: {
     //   sans: ['Söhne', 'sans-serif'],
