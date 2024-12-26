@@ -14,6 +14,8 @@ import dashboardRoutes from './Dashboard';
 import ShareRoute from './ShareRoute';
 import ChatRoute from './ChatRoute';
 import Search from './Search';
+import SettingsView from '~/components/Settings/SettingsView';
+import UpdateContentRoute from '~/components/Settings/Updates/UpdateContentRoute';
 import Root from './Root';
 
 const AuthLayout = () => (
@@ -79,6 +81,20 @@ export const router = createBrowserRouter([
           {
             path: 'search',
             element: <Search />,
+          },
+          {
+            path: 'settings',
+            element: <SettingsView />,
+            children: [
+              {
+                index: true,
+                element: <UpdateContentRoute />,
+              },
+              {
+                path: 'updates',
+                element: <UpdateContentRoute />,
+              },
+            ],
           },
         ],
       },
