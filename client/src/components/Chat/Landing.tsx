@@ -115,11 +115,11 @@ export default function Landing({ Header }: { Header?: ReactNode }) {
           </div> */}
           </div>
         ) : (
-          <h1 className="mb-7 max-w-[75vh] px-12 text-center text-lg md:text-[45px] md:leading-[52px] font-medium dark:text-white md:px-0">
+          <h1 className="mb-7 max-w-[75vh] px-12 text-center text-lg md:text-[45px] md:leading-[52px] font-medium dark:text-white md:px-2">
             {getWelcomeMessage()}
           </h1>
         )}
-        <div className="grid grid-rows-2 grid-cols-2 gap-x-[34px] gap-y-[18px]">
+        <div className="grid md:grid-rows-2 md:grid-cols-2 gap-x-[34px] gap-y-[18px]">
           {suggestions.map((suggestion, i) => (
             <div
               className="flex justify-center items-center w-full max-w-[280px] border border-[#585c6e] hover:border-[#777c96] rounded-full group px-10 py-2.5 mx-auto transition-colors duration-300 cursor-pointer"
