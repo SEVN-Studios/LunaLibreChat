@@ -185,7 +185,7 @@ const ChatForm = ({ index = 0 }) => {
                   data-testid="text-input"
                   style={{ height: 44, overflowY: 'auto' }}
                   rows={1}
-                  className={cn(baseClasses, speechClass, removeFocusRings)}
+                  className={cn(baseClasses, speechClass, removeFocusRings, 'font-styrene')}
                 />
               )}
             </FileFormWrapper>

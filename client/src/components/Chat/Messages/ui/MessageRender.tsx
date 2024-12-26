@@ -125,7 +125,7 @@ const MessageRender = memo(
         >
           <h2 className={cn('select-none font-semibold', fontSize)}>{messageLabel}</h2>
           <div className="flex-col gap-1 md:gap-3">
-            <div className="flex max-w-full flex-grow flex-col gap-0">
+            <div className="flex max-w-full flex-grow flex-col gap-0 font-styrene">
               {msg.plugin && <Plugin plugin={msg.plugin} />}
               <MessageContent
                 ask={ask}
