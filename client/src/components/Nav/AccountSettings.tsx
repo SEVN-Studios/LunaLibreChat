@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
 import * as Select from '@ariakit/react/select';
 import React, { Fragment, useState, memo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FileText, LogOut } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useGetUserBalance, useGetStartupConfig } from 'librechat-data-provider/react-query';
@@ -15,7 +15,7 @@ import Settings from './Settings';
 import store from '~/store';
 import { cn } from '~/utils';
 
-function Link({
+function MenuItem({
   className,
   children,
   href,
@@ -28,19 +28,31 @@ function Link({
 }) {
   return (
     <li className="list-none">
-      <a
-        className={cn([
-          'block w-full font-medium hover:bg-[#eee] dark:hover:bg-[#25272e] text-[#2e2f38] dark:text-[#f2f2f2] text-sm rounded-full px-7 py-2.5 transition-colors duration-200',
-          className,
-        ])}
-        {...(onClick ? {
-          onClick,
-        }: {
-          href: href ?? '#',
-        })}
-      >
-        {children}
-      </a>
+      {onClick ? (
+        <a
+          className={cn([
+            'block w-full font-medium hover:bg-[#eee] dark:hover:bg-[#25272e] text-[#2e2f38] dark:text-[#f2f2f2] text-sm rounded-full px-7 py-2.5 transition-colors duration-200',
+            className,
+          ])}
+          onClick={(e) => {
+            e.preventDefault();
+            onClick();
+          }}
+          href="/"
+        >
+          {children}
+        </a>
+      ): (
+        <Link
+          className={cn([
+            'block w-full font-medium hover:bg-[#eee] dark:hover:bg-[#25272e] text-[#2e2f38] dark:text-[#f2f2f2] text-sm rounded-full px-7 py-2.5 transition-colors duration-200',
+            className,
+          ])}
+          to={href ?? '#'}
+        >
+          {children}
+        </Link>
+      )}
     </li>
   );
 }
@@ -54,8 +66,10 @@ function AccountSettings() {
   });
   const [openSettingsPanel, setOpenSettingsPanel] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [previousPath, setPreviousPath] = useState('');
   const [showFiles, setShowFiles] = useRecoilState(store.showFiles);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const avatarSrc = useAvatar(user);
   const name = user?.avatar ?? user?.username ?? '';
@@ -79,29 +93,35 @@ function AccountSettings() {
           >
             <button
               className="bg-gray-100 dark:bg-[#292a32] hover:bg-white dark:hover:bg-[#2e2f38] text-black dark:text-white border-2 border-[#463cff] rounded-full px-4 py-3 mb-[46px] active:scale-95 transition-all ease-out duration-200 cursor-pointer"
-              onClick={() => setOpenSettingsPanel(false)}
+              onClick={() => {
+                setOpenSettingsPanel(false);
+
+                if (pathname !== previousPath) {
+                  navigate(previousPath);
+                }
+              }}
             >
               &lt; back to chats
             </button>
             <p className="font-medium text-[#2e2f38] dark:text-[#f2f2f2] text-lg mb-4">Settings</p>
             <div className="flex flex-col flex-grow space-y-2 overflow-x-hidden overflow-y-auto">
               {settingsLinkMap.map((link, i) => (
-                <Link
+                <MenuItem
                   className={pathname == link.href ? 'bg-[#eee] dark:bg-[#25272e]': ''}
                   href={link.href}
                   onClick={link.onClick}
                   key={i}
                 >
                   {link.title}
-                </Link>
+                </MenuItem>
               ))}
               <hr className="w-full h-px border-t-[#333]" />
-              <Link
+              <MenuItem
                 className={pathname == '/settings/updates' ? 'bg-[#eee] dark:bg-[#25272e]': ''}
                 href="/settings/updates"
               >
                 Updates
-              </Link>
+              </MenuItem>
               <li className="list-none">
                 <div
                   tabIndex={0}
@@ -156,70 +176,14 @@ function AccountSettings() {
           <Select.Select
             aria-label={localize('com_nav_account_settings')}
             data-testid="nav-user"
-            onClick={() => setOpenSettingsPanel(true)}
+            onClick={() => {
+              setPreviousPath(pathname);
+              setOpenSettingsPanel(true);
+            }}
           >
             <SettingsIcon className="stroke-[#828282] hover:stroke-[#ccc]" />
           </Select.Select>
         </div>
-        {/* <Select.SelectPopover
-          className="popover-ui w-[235px]"
-          style={{
-            transformOrigin: 'bottom',
-            marginRight: '0px',
-            bottom: '20px',
-          }}
-        >
-          <div className="text-token-text-secondary ml-3 mr-2 py-2 text-sm" role="note">
-            {user?.email ?? localize('com_nav_user')}
-          </div>
-          <DropdownMenuSeparator />
-          {startupConfig?.checkBalance === true &&
-            balanceQuery.data != null &&
-            !isNaN(parseFloat(balanceQuery.data)) && (
-            <>
-              <div className="text-token-text-secondary ml-3 mr-2 py-2 text-sm" role="note">
-                {`Balance: ${parseFloat(balanceQuery.data).toFixed(2)}`}
-              </div>
-              <DropdownMenuSeparator />
-            </>
-          )}
-          <Select.SelectItem
-            value=""
-            onClick={() => setShowFiles(true)}
-            className="select-item text-sm"
-          >
-            <FileText className="icon-md" aria-hidden="true" />
-            {localize('com_nav_my_files')}
-          </Select.SelectItem>
-          {{startupConfig?.helpAndFaqURL != '' && startupConfig?.helpAndFaqURL !== '/' && (
-            <Select.SelectItem
-              value=""
-              onClick={() => window.open(startupConfig?.helpAndFaqURL, '_blank')}
-              className="select-item text-sm"
-            >
-              <LinkIcon aria-hidden="true" />
-              {localize('com_nav_help_faq')}
-            </Select.SelectItem>
-          )}}
-          <Select.SelectItem
-            value=""
-            onClick={() => setShowSettings(true)}
-            className="select-item text-sm"
-          >
-            <GearIcon className="icon-md" aria-hidden="true" />
-            {localize('com_nav_settings')}
-          </Select.SelectItem>
-          <DropdownMenuSeparator />
-          <Select.SelectItem
-            aria-selected={true}
-            onClick={() => logout()}
-            value="logout"
-            className="select-item text-sm"
-          >
-            <LogOut className="icon-md" />
-            {localize('com_nav_log_out')}
-          </Select.SelectItem>
-        </Select.SelectPopover> */}
         {showFiles && <FilesView open={showFiles} onOpenChange={setShowFiles} />}
         {showSettings && <Settings open={showSettings} onOpenChange={setShowSettings} />}
       </Select.SelectProvider>
