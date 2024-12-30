@@ -181,7 +181,7 @@ endpoints:
         default: [
           'openai/gpt-4o',
           'openai/gpt-4o-mini',
-          'openai/o1-preview',
+          # 'openai/o1-preview',
           'openai/o1-mini',
           'openai/gpt-4',
           'google/gemini-pro-1.5',

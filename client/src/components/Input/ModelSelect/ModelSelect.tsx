@@ -36,7 +36,7 @@ export default function ModelSelect({
     models = [
       { label: 'ChatGPT 4o', value: 'openai/gpt-4o' },
       { label: 'ChatGPT 4o mini', value: 'openai/gpt-4o-mini' },
-      { label: 'ChatGPT o1-Preview', value: 'openai/o1-preview' },
+      // { label: 'ChatGPT o1-Preview', value: 'openai/o1-preview' },
       { label: 'ChatGPT o1 mini', value: 'openai/o1-mini' },
       { label: 'ChatGPT 4', value: 'openai/gpt-4' },
       { label: 'Gemini Pro 1.5', value: 'google/gemini-pro-1.5' },
