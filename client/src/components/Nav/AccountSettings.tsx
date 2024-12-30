@@ -116,12 +116,12 @@ function AccountSettings() {
                 </MenuItem>
               ))}
               <hr className="w-full h-px border-t-[#333]" />
-              <MenuItem
+              {/* <MenuItem
                 className={pathname == '/settings/updates' ? 'bg-[#eee] dark:bg-[#25272e]': ''}
                 href="/settings/updates"
               >
                 Updates
-              </MenuItem>
+              </MenuItem> */}
               <li className="list-none">
                 <div
                   tabIndex={0}
